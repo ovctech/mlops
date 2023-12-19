@@ -1,20 +1,22 @@
-import torchvision
 import torch
-from torchmetrics.functional import accuracy
 import torch.nn as nn
-from torch.optim.lr_scheduler import OneCycleLR
 import torch.nn.functional as F
+import torchvision
 from pytorch_lightning import *
+from torch.optim.lr_scheduler import OneCycleLR
+from torchmetrics.functional import accuracy
 
 BATCH_SIZE = 256 if torch.cuda.is_available() else 64
 
 
-
 def create_model():
     model = torchvision.models.resnet18(pretrained=False, num_classes=10)
-    model.conv1 = nn.Conv2d(3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False)
+    model.conv1 = nn.Conv2d(
+        3, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), bias=False
+    )
     model.maxpool = nn.Identity()
     return model
+
 
 class LitResnet(LightningModule):
     def __init__(self, lr=0.05):

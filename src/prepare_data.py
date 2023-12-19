@@ -1,9 +1,9 @@
-from torch.utils.data import random_split
+import os
+
 import torch
 import torchvision
-from torchvision.datasets import CIFAR10
 from torch.utils.data import DataLoader, random_split
-import os 
+from torchvision.datasets import CIFAR10
 
 PATH_DATASETS = os.environ.get("PATH_DATASETS", "./../data/.")
 BATCH_SIZE = 256 if torch.cuda.is_available() else 64
@@ -28,11 +28,15 @@ test_transforms = torchvision.transforms.Compose(
         cifar10_normalization,
     ]
 )
+
+
 def split_dataset(dataset, val_split=0.2, train=True):
     """Splits the dataset into train and validation set."""
     len_dataset = len(dataset)
     splits = get_splits(len_dataset, val_split)
-    dataset_train, dataset_val = random_split(dataset, splits, generator=torch.Generator().manual_seed(42))
+    dataset_train, dataset_val = random_split(
+        dataset, splits, generator=torch.Generator().manual_seed(42)
+    )
 
     if train:
         return dataset_train
@@ -53,13 +57,25 @@ def get_splits(len_dataset, val_split):
 
     return splits
 
-dataset_train = CIFAR10(PATH_DATASETS, train=True, download=True, transform=train_transforms)
-dataset_val = CIFAR10(PATH_DATASETS, train=True, download=True, transform=test_transforms)
+
+dataset_train = CIFAR10(
+    PATH_DATASETS, train=True, download=True, transform=train_transforms
+)
+dataset_val = CIFAR10(
+    PATH_DATASETS, train=True, download=True, transform=test_transforms
+)
 dataset_train = split_dataset(dataset_train)
 dataset_val = split_dataset(dataset_val, train=False)
-dataset_test = CIFAR10(PATH_DATASETS, train=False, download=True, transform=test_transforms)
+dataset_test = CIFAR10(
+    PATH_DATASETS, train=False, download=True, transform=test_transforms
+)
 
-train_dataloader = DataLoader(dataset_train, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS)
-val_dataloader = DataLoader(dataset_val, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
-test_dataloader = DataLoader(dataset_test, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS)
-
+train_dataloader = DataLoader(
+    dataset_train, batch_size=BATCH_SIZE, shuffle=True, num_workers=NUM_WORKERS
+)
+val_dataloader = DataLoader(
+    dataset_val, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS
+)
+test_dataloader = DataLoader(
+    dataset_test, batch_size=BATCH_SIZE, shuffle=False, num_workers=NUM_WORKERS
+)
