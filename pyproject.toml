@@ -15,10 +15,10 @@ torchvision = "^0.16.1"
 ipython = "^8.18.1"
 pytorch-lightning = "^2.1.2"
 pytorch-light = "^0.1.10"
+dvc = {extras = ["gdrive"], version = "^3.34.0"}
 
 
 [tool.poetry.group.dev-dependencies.dependencies]
-dvc = "^3.33.4"
 pre-commit = "^3.6.0"
 
 [build-system]

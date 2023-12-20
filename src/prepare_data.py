@@ -5,9 +5,7 @@ import torchvision
 from torch.utils.data import DataLoader, random_split
 from torchvision.datasets import CIFAR10
 
-PATH_DATASETS = os.environ.get("PATH_DATASETS", "./../data/.")
-BATCH_SIZE = 256 if torch.cuda.is_available() else 64
-NUM_WORKERS = int(os.cpu_count() / 2)
+from .config import BATCH_SIZE, NUM_WORKERS, PATH_DATASETS
 
 cifar10_normalization = torchvision.transforms.Normalize(
     mean=[x / 255.0 for x in [125.3, 123.0, 113.9]],
@@ -59,15 +57,15 @@ def get_splits(len_dataset, val_split):
 
 
 dataset_train = CIFAR10(
-    PATH_DATASETS, train=True, download=True, transform=train_transforms
+    PATH_DATASETS, train=True, download=False, transform=train_transforms
 )
 dataset_val = CIFAR10(
-    PATH_DATASETS, train=True, download=True, transform=test_transforms
+    PATH_DATASETS, train=True, download=False, transform=test_transforms
 )
 dataset_train = split_dataset(dataset_train)
 dataset_val = split_dataset(dataset_val, train=False)
 dataset_test = CIFAR10(
-    PATH_DATASETS, train=False, download=True, transform=test_transforms
+    PATH_DATASETS, train=False, download=False, transform=test_transforms
 )
 
 train_dataloader = DataLoader(
