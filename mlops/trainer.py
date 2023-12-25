@@ -1,3 +1,4 @@
+import os
 import subprocess
 
 import hydra
@@ -24,6 +25,7 @@ def get_git_commit_id():
 @hydra.main(config_path="../configs", config_name="config_cpu_1")
 def train(cfg: DictConfig) -> None:
     mlflow.set_tracking_uri("http://127.0.1.1:8080")
+    os.makedirs("lightning_logs", exist_ok=True)
     # Start MLflow run
     with mlflow.start_run():
         # Prepare dataset
