@@ -111,7 +111,7 @@ Python 3.11.0
 
 Скачайте репозиторий и перейдите в корень проекта:
 ```bash
-git clone git@github.com:ovctech/mlops.git -b master && cd mlops
+git clone git@github.com:ovctech/mlops.git -b main && cd mlops
 ```
 
 
