@@ -58,10 +58,10 @@ def prepare_dataset_train():
         ]
     )
     dataset_train = CIFAR10(
-        root=cfg.PATH_DATASETS, train=True, download=True, transform=train_transforms
+        root=cfg.PATH_DATASETS, train=True, download=False, transform=train_transforms
     )
     dataset_val = CIFAR10(
-        root=cfg.PATH_DATASETS, train=True, download=True, transform=test_transforms
+        root=cfg.PATH_DATASETS, train=True, download=False, transform=test_transforms
     )
     dataset_train = split_dataset(dataset_train)
     dataset_val = split_dataset(dataset_val, train=False)
@@ -96,7 +96,7 @@ def prepare_dataset_test():
         ]
     )
     dataset_test = CIFAR10(
-        root=cfg.PATH_DATASETS, train=False, download=True, transform=test_transforms
+        root=cfg.PATH_DATASETS, train=False, download=False, transform=test_transforms
     )
 
     test_dataloader = DataLoader(
