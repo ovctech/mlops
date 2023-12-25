@@ -11,7 +11,7 @@ all: train infern
 
 rebuild: clean all
 
-prepare: pre-install create-venv install open-mlflow
+prepare: pre-install create-venv install
 
 pre-install:
 	@-echo "$(COLOR)[32m Installing pyenv... $(COLOR)[0m"
