@@ -1,0 +1,6 @@
+model:
+  lr: 0.05
+trainer:
+  max_epochs: 1
+  accelerator: auto
+  devices: 1

@@ -1,0 +1,10 @@
+__pycache__/
+outputs/
+lightning_logs/
+####
+.json
+.csv
+.h5
+.cbm
+.pth
+.xyz
