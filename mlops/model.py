@@ -1,3 +1,4 @@
+import config as cfg
 import mlflow
 import torch
 import torch.nn as nn
@@ -6,8 +7,6 @@ import torchvision
 from pytorch_lightning import LightningModule
 from torch.optim.lr_scheduler import OneCycleLR
 from torchmetrics.functional import accuracy
-
-import config as cfg
 
 
 def create_model():

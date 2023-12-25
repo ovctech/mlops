@@ -2,12 +2,11 @@ import subprocess
 
 import hydra
 import mlflow
+from model import LitResnet
 from omegaconf import DictConfig
 from prepare_dataset import prepare_dataset_train
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
-
-from model import LitResnet
 
 
 def get_git_commit_id():

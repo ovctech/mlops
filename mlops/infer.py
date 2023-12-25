@@ -1,10 +1,9 @@
 import os
 
 import pandas as pd
+from model import LitResnet
 from prepare_dataset import prepare_dataset_test
 from pytorch_lightning import Trainer
-
-from model import LitResnet
 
 
 def get_path_of_model_params():

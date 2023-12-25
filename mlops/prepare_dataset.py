@@ -1,11 +1,10 @@
 import subprocess
 
+import config as cfg
 import torch
 import torchvision
 from torch.utils.data import DataLoader, random_split
 from torchvision.datasets import CIFAR10
-
-import config as cfg
 
 
 def split_dataset(dataset, val_split=0.2, train=True):
