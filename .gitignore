@@ -141,3 +141,17 @@ env.bak/
 # Spyder
 .spyderproject
 .spyderproject.lock
+
+
+####
+.json
+.csv
+.h5
+.cbm
+.pth
+.xyz
+.ruff_cache/
+
+models/
+results/
+mlruns/
